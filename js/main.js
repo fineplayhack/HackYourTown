@@ -27,3 +27,33 @@ function initMap() {
     zoom: 10 // 地図のズームを指定
   });
 }
+
+$(document).ready(function(){
+  $("#marker").on('click', function(){  //"マーカ"ボタンが押されたときマーカをたてる
+  putMarker();
+  });
+});
+
+function putMarker(){　//マーカをたてる関数
+  var markerLatlng = new google.maps.LatLng(34.230517,135.170808);// マーカを立てる位置
+
+  var contentString = '<div id="content">'+
+  '<div id="siteNotice">'+
+  '</div>'+
+  '<h1 id="firstHeading" class="firstHeading">和歌山市役所</h1>'+
+  '<div id="bodyContent">'+
+  '<p>ここは和歌山市役所です．</p>'+
+  '</div>'; //情報ウィンドウの説明
+
+  var infowindow = new google.maps.InfoWindow({ //情報ウィンドウの表示
+    content: contentString
+  });
+  var marker = new google.maps.Marker({ //マーカを立てる処理
+    position: markerLatlng,
+    title:"和歌山市役所"
+  });
+  marker.setMap(map);
+  marker.addListener('click', function() { //マーカをクリックしたときの処理
+    infowindow.open(map, marker); //情報ウィンドウを開く
+  });
+}
