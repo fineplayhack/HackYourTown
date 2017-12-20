@@ -42,7 +42,8 @@ $(document).ready(function calendarMake(){ //カレンダーを作成する関�
         console.log(data[i]["催し名"]);
         event_array.push({
           title: data[i]["催し名"],
-          start: eventdate
+          start: eventdate,
+          url: 'map.html' + '?date=' + eventdate
         });
       }
     }
