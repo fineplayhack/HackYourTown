@@ -8,13 +8,26 @@ function getEvent(json) { //jsonを読み込む関数
     console.log("json", data); //jsonの中身をコンソールで表示
     for(var i = 0; i < len; i++) { //jsonの中身を取り出す
       if(data[i]["対象"].indexOf("小学生") != -1) //もし"対象"というキーが"小学生"という文字列を含んでいたら実行
-      ulObj.append($("<li>").attr({"id":i}).text(data[i]["見出し"])); //ulタグに情報を追加
+      ulObj.append($("<li>").attr({"id":i}).text(data[i]["開催日"])); //ulタグに情報を追加
     }
   });
 }
 
 $(document).ready(function calendarMake(){ //カレンダーを作成する関数
-  $('#calendar').fullCalendar();
+  $('#calendar').fullCalendar({
+    events: [
+      {
+        title: 'Hack Your Town',
+        start: '2017-12-18',
+        end: '2017-12-23'
+      },
+      {
+        title: 'Click for Google',
+        url: 'http://google.com/',
+        start: '2017-12-28'
+      }
+    ]
+  });
 });
 
 var map;
