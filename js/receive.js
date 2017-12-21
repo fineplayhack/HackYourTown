@@ -54,24 +54,34 @@ function getQuery() { // クエリを処理する
 //   });
 // });
 
-function attrLatLngFromAddress(address){ // 住所から緯度経度を算出
+function attrLatLngFromAddress(callback,address){ // 住所から緯度経度を算出
   address = address.slice(1, 8);
   var latlng = new Object();
-      latlng.lat = 34.230517;
-      latlng.lng = 135.170808;
+  latlng.lat;
+  latlng.lng;
+  var lat;
+  var lng;
+  var dfd = new $.Deferred();
   var geocoder = new google.maps.Geocoder();
   console.log(address);
+
   geocoder.geocode({'address': address}, function(results, status){
     if(status == google.maps.GeocoderStatus.OK) {
-      var lat = results[0].geometry.location.lat();
-      var lng = results[0].geometry.location.lng();
-      console.log(lat,lng);
-      // 小数点第六位以下を四捨五入した値を緯度経度にセット、小数点以下の値が第六位に満たない場合は0埋め
-      latlng.lat = (Math.round(lat * 1000000) / 1000000).toFixed(6);
-      latlng.lng = (Math.round(lng * 1000000) / 1000000).toFixed(6);
-    }
-  });
-      return latlng;
+      callback({
+         // 小数点第六位以下を四捨五入した値を緯度経度にセット、小数点以下の値が第六位に満たない場合は0埋め
+         "lat": (Math.round(results[0].geometry.location.lat() * 1000000) / 1000000).toFixed(6),
+         "lng": (Math.round(results[0].geometry.location.lng() * 1000000) / 1000000).toFixed(6)
+       });
+         // console.log(lat);
+         // return latlng;
+       }
+     });
+}
+
+function testresults(attrLatLngFromAddress)
+{
+  console.log(attrLatLngFromAddress);
+  var markerLatlng = new google.maps.LatLng(attrLatLngFromAddress.lat,attrLatLngFromAddress.lng);
 }
 
 var map;
@@ -86,17 +96,19 @@ function initMap() {
 }
 
 $(document).ready(function(){
-  $("#marker").on('click', function(){  //"マーカ"ボタンが押されたときマーカをたてる
+  //$("#marker").on('click', function(){  //"マーカ"ボタンが押されたときマーカをたてる
   putMarker();
-  });
+  //});
 });
 
 function putMarker(){　//マーカをたてる関数
   $.getJSON(json , function(data) {
     len = data.length;
+    var markers = [];
     console.log("json", data); //jsonの中身をコンソールで表示
     for(var i = 0; i < len; i++) { //jsonの中身を取り出す
       var eventdate;
+      var latlng;
       if(data[i]["開催日"].indexOf("月") != -1){
         var splitdate = data[i]["開催日"].split("月");
         var month = splitdate[0].slice(-2);
@@ -117,11 +129,16 @@ function putMarker(){　//マーカをたてる関数
         console.log(eventdate);
         console.log(data[i]["催し名"]);
       }
-      console.log("query[0]",query.date);
+
       if(eventdate == query.date){
-        var latlng = attrLatLngFromAddress(data[i]["住所"]);
+        //$.when(
+        attrLatLngFromAddress(testresults,data[i]["住所"]);
+        //).done(function(){
+
+
+//var latlng = attrLatLngFromAddress(data[i]["住所"]);
         console.log("latlng",latlng);
-        var markerLatlng = new google.maps.LatLng(latlng.lat,latlng.lng);// マーカを立てる位置
+        var markerLatlng = new google.maps.LatLng(1,1);// マーカを立てる位置
 
         var contentString = '<div id="content">'+
         '<div id="siteNotice">'+
