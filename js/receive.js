@@ -25,12 +25,12 @@ function attrLatLngFromAddress(callback,data){ // 住所から緯度経度を算
 
   geocoder.geocode({'address': address}, function(results, status){
     if(status == google.maps.GeocoderStatus.OK) {
-      callback({
+      callback({ // 使用するデータ項目を追加してください
         // 小数点第六位以下を四捨五入した値を緯度経度にセット、小数点以下の値が第六位に満たない場合は0埋め
         "lat": (Math.round(results[0].geometry.location.lat() * 1000000) / 1000000).toFixed(6),
         "lng": (Math.round(results[0].geometry.location.lng() * 1000000) / 1000000).toFixed(6),
-        "location": data["見出し"],
-        "eName": data["催し名"]
+        "location": data["見出し"], // 建物名
+        "eName": data["催し名"] // イベント名
       });
     }
   });
@@ -38,7 +38,7 @@ function attrLatLngFromAddress(callback,data){ // 住所から緯度経度を算
 
 function geoResults(eventObj){
   console.log("latlng",eventObj.lat);
-  var markerLatlng = new google.maps.LatLng(eventObj.lat,eventObj.lng);// マーカを立てる位置置
+  var markerLatlng = new google.maps.LatLng(eventObj.lat,eventObj.lng); // マーカを立てる位置
 
   var contentString = '<div id="content">'+
   '<div id="siteNotice">'+
@@ -46,7 +46,7 @@ function geoResults(eventObj){
   '<h2 id="firstHeading" class="firstHeading">' + eventObj.eName + '</h2>'+
   '<div id="bodyContent">'+
   '<p>' + eventObj.location + '</p>'+
-  '</div>'; //情報ウィンドウの説明
+  '</div>'; //情報ウィンドウの説明，適宜追加してください
 
   var infowindow = new google.maps.InfoWindow({ //情報ウィンドウの表示
     content: contentString
@@ -82,9 +82,8 @@ function putMarker(){　//マーカをたてる関数
     len = data.length;
     var markers = [];
     console.log("json", data); //jsonの中身をコンソールで表示
-    for(var i = 0; i < len; i++) { //jsonの中身を取り出す
+    for(var i = 0; i < len; i++) { // イベントの日にちを取得
       var eventdate;
-      var latlng;
       if(data[i]["開催日"].indexOf("月") != -1){
         var splitdate = data[i]["開催日"].split("月");
         var month = splitdate[0].slice(-2);
@@ -105,8 +104,8 @@ function putMarker(){　//マーカをたてる関数
         console.log(eventdate);
         console.log(data[i]["催し名"]);
       }
-      if(eventdate == query.date){
-        attrLatLngFromAddress(geoResults,data[i]);
+      if(eventdate == query.date){ // イベントの日にちとクエリの日にちが同じなら
+        attrLatLngFromAddress(geoResults,data[i]); // マーカを立てる処理
       }
     }
   });

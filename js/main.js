@@ -6,8 +6,9 @@ $(document).ready(function calendarMake(){ //カレンダーを作成する関�
     console.log("json", data); //jsonの中身をコンソールで表示
     var event_array = [];
     for(var i = 0; i < len; i++) { //jsonの中身を取り出す
+
       var eventdate;
-      if(data[i]["開催日"].indexOf("月") != -1){
+      if(data[i]["開催日"].indexOf("月") != -1){ // イベント開催日をカレンダーが取得しやすい形に変換
         var splitdate = data[i]["開催日"].split("月");
         var month = splitdate[0].slice(-2);
         var date = splitdate[1].slice(0, 2);
@@ -24,9 +25,10 @@ $(document).ready(function calendarMake(){ //カレンダーを作成する関�
         }else{
           eventdate = "2017-" + month + "-" + date;
         }
+
         console.log(eventdate);
         console.log(data[i]["催し名"]);
-        event_array.push({
+        event_array.push({ // イベントの配列に追加
           title: data[i]["催し名"],
           start: eventdate,
           url: 'map.html' + '?date=' + eventdate
