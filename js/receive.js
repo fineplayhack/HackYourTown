@@ -18,6 +18,16 @@ function getQuery() { // クエリを処理する
   return vars;
 }
 
+$(document).ready(function(){
+  putTitle();
+});
+
+function putTitle(){
+  var splitDate = query.date.split('-');
+  var date = splitDate[1] + "月" + splitDate[2] + "日";
+  $("#title").text(date + "開催のイベント")
+}
+
 function attrLatLngFromAddress(callback,data){ // 住所から緯度経度を算出
   address = data["住所"];
   var geocoder = new google.maps.Geocoder();

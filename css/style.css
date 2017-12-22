@@ -1,8 +1,30 @@
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding:0;
+}
+
+#wrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+}
+
 #calendar {
-  width: 800px;
+  margin: 0 auto;
+  margin-top: 3vh;
+  width: 100%;
+  max-width: 1000px;
 }
 
 #map {
-  width: 800px;
-  height: 500px;
+  margin: 0 auto;
+  margin-top: 3vh;
+  width: 100%;
+  max-width: 1000px;
+  height: 60vh;
 }
