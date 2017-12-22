@@ -112,6 +112,7 @@ function initMap() {
     },
     zoom: 10 // 地図のズームを指定
   });
+  $("#licence").append("データ提供元：" + json);
 }
 
 $(document).ready(function(){
