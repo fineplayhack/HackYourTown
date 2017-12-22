@@ -82,21 +82,22 @@ function geoResults(eventObj){
   marker.addListener('click', function() { //マーカをクリックしたときの処理
     infowindow.open(map, marker); //情報ウィンドウを開く
     $("#detail").html(
-      "<li>見出し："+ eventObj.location +"</li>"
+      "<ul>" +
+      "<li>イベント："+ eventObj.eName +"</li>"
+      +"<li>場所："+ eventObj.location +"</li>"
+      +"<li>費用："+ eventObj.cost +"</li>"
       +"<li>住所"+ eventObj.streetadd +"</li>"
       +"<li>電話："+ eventObj.phonenum +"</li>"
-      +"<li>ファックス："+ eventObj.fax +"</li>"
-      +"<li>休館日："+ eventObj.off +"</li>"
-      +"<li>備考："+ eventObj.info +"</li>"
-      +"<li>催し名："+ eventObj.eName +"</li>"
+      +"<li>開催日："+ eventObj.evdate.replace(/\?/g,"～") +"</li>"
+      +"<li>開館時間："+ eventObj.openning +"</li>"
+      +"<li>申込："+ eventObj.application +"</li>"
       +"<li>区分："+ eventObj.teritory +"</li>"
       +"<li>定員："+ eventObj.capacity +"</li>"
       +"<li>対象："+ eventObj.target +"</li>"
-      +"<li>申込："+ eventObj.application +"</li>"
-      +"<li>開催日："+ eventObj.evdate +"</li>"
-      +"<li>費用："+ eventObj.cost +"</li>"
-      +"<li>場所："+ eventObj.place +"</li>"
-      +"<li>開館時間："+ eventObj.openning +"</li>"
+      +"<li>ファックス："+ eventObj.fax +"</li>"
+      +"<li>休館日："+ eventObj.off +"</li>"
+      +"<li>備考："+ eventObj.info +"</li>"
+      + "</ul>"
     )
   });
 
