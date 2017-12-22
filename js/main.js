@@ -39,4 +39,6 @@ $(document).ready(function calendarMake(){ //カレンダーを作成する関�
       events:event_array
     });
   });
+
+  $("#licence").append("データ提供元：" + json);
 });
