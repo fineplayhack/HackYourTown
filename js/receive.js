@@ -18,6 +18,18 @@ function getQuery() { // クエリを処理する
   return vars;
 }
 
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), { // #sampleに地図を埋め込む
+    center: { // 地図の中心を指定（和歌山市役所）
+      lat: 34.230517, // 緯度
+      lng: 135.170808 // 経度
+    },
+    zoom: 10 // 地図のズームを指定
+  });
+  $("#licence").append("データ提供元：" + json);
+}
+
 $(document).ready(function(){
   putTitle();
 });
@@ -101,18 +113,6 @@ function geoResults(eventObj){
     )
   });
 
-}
-
-var map;
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), { // #sampleに地図を埋め込む
-    center: { // 地図の中心を指定（和歌山市役所）
-      lat: 34.230517, // 緯度
-      lng: 135.170808 // 経度
-    },
-    zoom: 10 // 地図のズームを指定
-  });
-  $("#licence").append("データ提供元：" + json);
 }
 
 $(document).ready(function(){

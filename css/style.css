@@ -2,14 +2,14 @@ body {
   height: 100%;
   width: 100%;
   margin: 0;
-  padding:0;
+  padding: 0;
   background-color: #ccc;
   color: #333333;
 }
 
 #header {
-  width: 100vw;
-  background-color: #111;
+  width: 100%;
+  background-color: #333333;
   color: #fff;
 }
 
@@ -34,16 +34,10 @@ body {
   text-align: center;
 }
 
-.contents {/*index.htmlのデータ提供元の表示*/
-  width: 80%;
-  margin: 0 auto;
-  margin-bottom: 3vh;
-}
-
 #calendar {
   margin: 0 auto;
   margin-top: 3vh;
-  width: 90%;
+  width: 100%;
   max-width: 1000px;
 }
 
@@ -74,6 +68,19 @@ body {
 }
 
 #return_calendar a{
-  color: #333333;
-  text-decoration: underline;
+  color: #fff;
+  padding: 0.5em 1em;
+  text-align: center;
+  text-decoration: none;
+  background: #333333;
+  margin-top: 1vh;
+}
+
+#licence {
+  width: 100%;
+  background: #fffcf4;
+  box-shadow :0px 0px 5px silver;/*5px=影の広がり具合*/
+  padding: 0.5em 0.5em 0.5em 2em;
+  word-wrap: break-word;
+  box-sizing: border-box;
 }
