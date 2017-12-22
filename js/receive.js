@@ -40,7 +40,20 @@ function attrLatLngFromAddress(callback,data){ // 住所から緯度経度を算
         "lat": (Math.round(results[0].geometry.location.lat() * 1000000) / 1000000).toFixed(6),
         "lng": (Math.round(results[0].geometry.location.lng() * 1000000) / 1000000).toFixed(6),
         "location": data["見出し"], // 建物名
-        "eName": data["催し名"] // イベント名
+        "eName": data["催し名"],// イベント名
+        "phonenum": data["電話"],
+        "fax": data["ファックス"],
+        "off": data["休館日"],
+        "streetadd": data["住所"],
+        "info": data["備考"],
+        "teritory": data["区分"],
+        "capacity": data["定員"],
+        "target": data["対象"],
+        "application": data["申込"],
+        "cost": data["費用"],
+        "evdate": data["開催日"],
+        "openning": data["開館時間"],
+        "place": data["場所"]
       });
     }
   });
@@ -68,6 +81,23 @@ function geoResults(eventObj){
   marker.setMap(map);
   marker.addListener('click', function() { //マーカをクリックしたときの処理
     infowindow.open(map, marker); //情報ウィンドウを開く
+    $("#detail").html(
+      "<li>見出し："+ eventObj.location +"</li>"
+      +"<li>住所"+ eventObj.streetadd +"</li>"
+      +"<li>電話："+ eventObj.phonenum +"</li>"
+      +"<li>ファックス："+ eventObj.fax +"</li>"
+      +"<li>休館日："+ eventObj.off +"</li>"
+      +"<li>備考："+ eventObj.info +"</li>"
+      +"<li>催し名："+ eventObj.eName +"</li>"
+      +"<li>区分："+ eventObj.teritory +"</li>"
+      +"<li>定員："+ eventObj.capacity +"</li>"
+      +"<li>対象："+ eventObj.target +"</li>"
+      +"<li>申込："+ eventObj.application +"</li>"
+      +"<li>開催日："+ eventObj.evdate +"</li>"
+      +"<li>費用："+ eventObj.cost +"</li>"
+      +"<li>場所："+ eventObj.place +"</li>"
+      +"<li>開館時間："+ eventObj.openning +"</li>"
+    )
   });
 
 }
