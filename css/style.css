@@ -3,11 +3,31 @@ body {
   width: 100%;
   margin: 0;
   padding:0;
+  background-color: #ccc;
+  color: #333333;
+}
+
+#header {
+  width: 100vw;
+  background-color: #111;
+  color: #fff;
+}
+
+#header a {
+  margin-left: 10%;
+  font-size: 3em;
+  padding: 10px 10px;
+  color:#fff;
+  text-decoration: none;
 }
 
 #wrapper {
   width: 80%;
+  min-height: 100vh;
   margin: 0 auto;
+  background-color: #fff;
+  margin-top: 0px;
+  overflow: hidden;
 }
 
 .title {
@@ -17,7 +37,7 @@ body {
 #calendar {
   margin: 0 auto;
   margin-top: 3vh;
-  width: 100%;
+  width: 90%;
   max-width: 1000px;
 }
 
@@ -25,6 +45,24 @@ body {
   margin: 0 auto;
   margin-top: 3vh;
   width: 100%;
-  max-width: 1000px;
+  /* max-width: 1000px; */
   height: 60vh;
+}
+
+.contents-box {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 3vh;
+}
+
+#detail ul{
+  background: #fffcf4;
+  box-shadow :0px 0px 5px silver;/*5px=影の広がり具合*/
+  padding: 0.5em 0.5em 0.5em 2em;
+}
+
+#detail li{
+  line-height: 2em;
+  /* border-top: solid #1e366a 1px;
+  border-bottom: solid #1e366a 1px; */
 }
