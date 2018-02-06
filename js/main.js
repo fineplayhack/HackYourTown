@@ -1,6 +1,7 @@
 var json = "";
 var jdate;
 var jyear;
+var jmonth;
 
 $(function() {
   var jdate = new Date();
