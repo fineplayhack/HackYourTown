@@ -1,4 +1,12 @@
-var jsondata = "https://raw.githubusercontent.com/wakayama-pref-org/pr_magazine_event_2017_12/master/json/pr_magazine_event_2017_12.json";
+var jsondata = "";
+
+$(function() {
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth()+1;
+  jsondata = "https://raw.githubusercontent.com/wakayama-pref-org/pr_magazine_event_" + year + "_" + month + "/master/json/pr_magazine_event_" + year + "_" + month + ".json";
+});
+
 $(function() {
   $.getJSON(jsondata , function(data) {
     var ulObj = $("#demo"),
